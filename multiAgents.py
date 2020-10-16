@@ -79,7 +79,9 @@ class ReflexAgent(Agent):
         
         ghostDistances = []
         for x in newGhostStates:
-          ghostDistances.append(manhattanDistance(newPos, x.getPosition()))
+            if manhattanDistance(newPos, x.getPosition()) < 2:
+                return float("-inf")
+            ghostDistances.append(manhattanDistance(newPos, x.getPosition()))
 
           
         foodList = newFood.asList()
@@ -335,31 +337,27 @@ def betterEvaluationFunction(currentGameState):
     newFood = currentGameState.getFood()
     newGhostStates = currentGameState.getGhostStates()
     
-
+    foodList = newFood.asList()
        
     score = currentGameState.getScore()
-        
+    foodDistances = []   
         
     ghostDistances = []
-    for x in newGhostStates:
-        ghostDistances.append(manhattanDistance(newPos, x.getPosition()))
-
-          
-    foodList = newFood.asList()
-        
        
-    foodDistances = []
+    
     for x in foodList: 
         foodDistances.append(manhattanDistance(newPos, x))
-        
-        
-    if len(newGhostStates) is not 0:
-        score += min(ghostDistances)  
-
-       
-    if len(foodDistances) is not 0:
-      score -= min(foodDistances)     
-        
+    
+    for x in newGhostStates:
+        ghostDistances.append(manhattanDistance(newPos, x.getPosition()))
+        if x.scaredTimer > 0:
+            score = score
+        else:
+            if len(newGhostStates) is not 0:
+                score += min(ghostDistances) 
+            if len(foodDistances) is not 0:
+                score -= min(foodDistances) 
+    
        
     return score
 
