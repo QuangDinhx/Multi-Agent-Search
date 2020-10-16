@@ -41,4 +41,6 @@ This project is my solutions of Berkeley Pacman solution
 ### Q5: Evaluation Function
     Giống bài 1 tuy nhiên em sử dụng thêm 1 giá trị đó là scaredTimer là thời gian pacman không sợ ma.
     Lúc này khi lập trình không cần để ý đến vị trí của những con ma nữa vì pacman không sợ ma. Cho nên
-    em để điểm giữ nguyên. Nếu hết thời gian thi làm nh
+    em để điểm giữ nguyên. Nếu hết thời gian thi làm như bài 1. 
+
+
